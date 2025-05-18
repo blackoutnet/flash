@@ -4,7 +4,7 @@ const config = {
     master: 'https://raw.githubusercontent.com/commaai/openpilot/master/system/hardware/tici/all-partitions.json',
   },
   loader: {
-    url: 'https://raw.githubusercontent.com/commaai/flash/master/src/QDL/programmer.bin',
+    url: '/qdl/programmer.bin',
   },
 }
 
