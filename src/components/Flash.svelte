@@ -5,13 +5,13 @@
   import { isLinux } from '../utils/platform';
   import config from '../config';
 
-  import bolt from '../assets/bolt.svg';
-  import cable from '../assets/cable.svg';
-  import deviceExclamation from '../assets/device_exclamation_c3.svg';
-  import deviceQuestion from '../assets/device_question_c3.svg';
-  import done from '../assets/done.svg';
-  import exclamation from '../assets/exclamation.svg';
-  import systemUpdate from '../assets/system_update_c3.svg';
+  const bolt = '/assets/bolt.svg';
+  const cable = '/assets/cable.svg';
+  const deviceExclamation = '/assets/device_exclamation_c3.svg';
+  const deviceQuestion = '/assets/device_question_c3.svg';
+  const done = '/assets/done.svg';
+  const exclamation = '/assets/exclamation.svg';
+  const systemUpdate = '/assets/system_update_c3.svg';
 
   let step = StepCode.INITIALIZING;
   let message = '';
@@ -74,7 +74,7 @@
   const handleRetry = () => window.location.reload();
 
   $: uiState = { ...steps[step], ...(error ? { ...errors[ErrorCode.UNKNOWN], ...errors[error] } : {}) };
-  $: { status, description, bgColor, icon, iconStyle = 'invert' } = uiState;
+  $: ({ status, description, bgColor, icon, iconStyle = 'invert' } = uiState);
   $: title = (() => {
     if (message && !error) {
       let t = message + '...';

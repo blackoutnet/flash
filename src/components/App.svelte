@@ -1,9 +1,4 @@
 <script>
-  import { lazy } from 'svelte';
-  import comma from '../assets/comma.svg';
-  import qdlPorts from '../assets/qdl-ports.svg';
-  import zadigCreateNewDevice from '../assets/zadig_create_new_device.png';
-  import zadigForm from '../assets/zadig_form.png';
   import { isLinux, isWindows } from '../utils/platform';
   import Flash from './Flash.svelte';
 
@@ -11,14 +6,16 @@
   const PRODUCT_ID = '9008';
   const DETACH_SCRIPT = "for d in /sys/bus/usb/drivers/qcserial/*-*; do [ -e \"$d\" ] && echo -n \"$(basename $d)\" | sudo tee /sys/bus/usb/drivers/qcserial/unbind >/dev/null; done";
 
-  function copy(text) { navigator.clipboard.writeText(text); }
+  function copy(text) {
+    navigator.clipboard.writeText(text);
+  }
   const version = import.meta.env.VITE_PUBLIC_GIT_SHA || 'dev';
 </script>
 
 <div class="flex flex-col lg:flex-row flex-wrap">
   <main class="p-12 md:p-16 lg:p-20 xl:p-24 w-screen max-w-none lg:max-w-prose lg:w-auto h-auto lg:h-screen lg:overflow-y-auto prose dark:prose-invert prose-green bg-white dark:bg-gray-900">
     <section>
-      <img src={comma} alt="comma" width="128" height="128" class="dark:invert" />
+      <img src={"/assets/comma.svg"} alt="comma" width="128" height="128" class="dark:invert" />
       <h1>flash.comma.ai</h1>
       <p>
         This tool allows you to flash AGNOS onto your comma device. AGNOS is the Ubuntu-based operating system for
@@ -48,11 +45,11 @@
           </li>
           <li>
             Under <code>Device</code> in the menu bar, select <code>Create New Device</code>.
-            <img src={zadigCreateNewDevice} alt="Zadig Create New Device" width="575" height="254" />
+            <img src={"/assets/zadig_create_new_device.png"} alt="Zadig Create New Device" width="575" height="254" />
           </li>
           <li>
             Fill in three fields. The first field is just a description and you can fill in anything. The next two fields are very important. Fill them in with <code>{VENDOR_ID}</code> and <code>{PRODUCT_ID}</code> respectively. Press "Install Driver" and give it a few minutes to install.
-            <img src={zadigForm} alt="Zadig Form" width="575" height="254" />
+            <img src={"/assets/zadig_form.png"} alt="Zadig Form" width="575" height="254" />
           </li>
         </ol>
         <p>No additional software is required for macOS, Linux or Android.</p>
@@ -67,7 +64,7 @@
         <li>First, connect the device to your computer using the <strong>lower</strong> <span class="whitespace-nowrap">USB-C</span> port <strong>(port 1)</strong>.</li>
         <li>Second, connect power to the <strong>upper</strong> <span class="whitespace-nowrap">OBD-C</span> port <strong>(port 2)</strong>.</li>
       </ol>
-      <img src={qdlPorts} alt="image showing comma three and two ports. the lower port is labeled 1. the upper port is labeled 2." width="450" height="300" />
+      <img src={"/assets/qdl-ports.svg"} alt="image showing comma three and two ports. the lower port is labeled 1. the upper port is labeled 2." width="450" height="300" />
       <p>Your device's screen will remain blank for the entire flashing process. This is normal.</p>
       {#if isLinux}
         <strong>Note for Linux users</strong>

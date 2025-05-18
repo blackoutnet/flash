@@ -1,7 +1,18 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
 import App from '../components/App.svelte';
+import '../styles/global.css';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/jetbrains-mono';
 ---
-<BaseLayout>
-  <App />
-</BaseLayout>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flash.comma.ai</title>
+  </head>
+  <body>
+    <App />
+  </body>
+</html>
+
+
