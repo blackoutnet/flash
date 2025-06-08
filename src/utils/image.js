@@ -1,4 +1,4 @@
-import { XzReadableStream } from 'xz-decompress'
+import { XzReadableStream } from 'xz-decompress';
 
 import { fetchStream } from './stream'
 
