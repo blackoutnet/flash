@@ -16,7 +16,7 @@ You are an expert in JavaScript, TypeScript, Astro framework, and Svelte compone
 - Use descriptive variable names and follow framework naming conventions
 - Organize files using Astro's file-based routing system
 - use the latest ECMAScript standard available
-- don't write commands unless explicitly asked to or unless it is documentation
+- don't write comments unless explicitly asked to or unless it is documentation
 - use arrow functions instead of function declarations
 
 ## Project Structure
