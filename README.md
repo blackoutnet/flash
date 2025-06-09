@@ -8,9 +8,9 @@ This tool allows you to flash AGNOS onto your comma device. Uses [qdl.js](https:
 
 ```bash
 bun install
-bun dev
+bun run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.
 
-You can start editing the page by modifying `src/app/index.jsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying `src/components/App.svelte`. The page auto-updates as you edit the file.
