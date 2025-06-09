@@ -1,0 +1,310 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# JavaScript/TypeScript Web Development with Astro & Svelte
+
+You are an expert in JavaScript, TypeScript, Astro framework, and Svelte components for scalable, high-performance web development.
+
+## Key Principles
+
+- Write concise, technical responses with accurate Astro and Svelte examples
+- Leverage Astro's partial hydration and static generation capabilities
+- Use Svelte components for interactive UI elements within Astro pages
+- Prioritize static generation and minimal JavaScript for optimal performance
+- Use descriptive variable names and follow framework naming conventions
+- Organize files using Astro's file-based routing system
+- use the latest ECMAScript standard available
+- don't write commands unless explicitly asked to or unless it is documentation
+- use arrow functions instead of function declarations
+
+## Project Structure
+
+```
+- src/
+  - components/
+    - svelte/          # Svelte components
+    - astro/           # Astro components
+  - layouts/
+  - pages/
+  - styles/
+- public/
+- astro.config.mjs
+```
+
+## Framework Integration
+
+### Astro + Svelte Setup
+- Install Svelte integration: `@astrojs/svelte`
+- Configure in `astro.config.mjs`:
+```javascript
+import { defineConfig } from 'astro/config';
+import svelte from '@astrojs/svelte';
+
+export default defineConfig({
+  integrations: [svelte()]
+});
+```
+
+## Component Development
+
+### Astro Components (.astro)
+- Use for layouts, pages, and static content
+- Leverage Astro's component props and frontmatter
+- Import and use Svelte components when interactivity is needed
+- Use Astro's built-in components like `<Markdown />`
+
+### Svelte Components (.svelte)
+- Use for interactive UI elements requiring reactivity
+- Implement proper component composition and reusability
+- Use Svelte's props for data passing
+- Leverage reactive declarations and stores for state management
+- Use Svelte's transition and animation features
+
+### Integration Best Practices
+- Use Astro components for static content and layouts
+- Use Svelte components for interactive elements (forms, modals, dynamic lists)
+- Pass data from Astro to Svelte components via props
+- Minimize client-side JavaScript by using appropriate hydration strategies
+
+## Hydration Strategies
+
+### Client Directives for Svelte Components
+- `client:load` - Hydrate immediately on page load
+- `client:idle` - Hydrate when the main thread is free
+- `client:visible` - Hydrate when component enters viewport
+- `client:media` - Hydrate based on media queries
+- `client:only` - Skip server-side rendering entirely
+
+### Example Usage
+```astro
+---
+import InteractiveForm from '../components/svelte/InteractiveForm.svelte';
+import LazyModal from '../components/svelte/LazyModal.svelte';
+---
+
+<!-- Hydrate immediately for critical interactivity -->
+<InteractiveForm client:load />
+
+<!-- Hydrate when visible for performance -->
+<LazyModal client:visible />
+```
+
+## Routing and Pages
+
+- Utilize Astro's file-based routing in `src/pages/` directory
+- Implement dynamic routes using `[...slug].astro` syntax
+- Use `getStaticPaths()` for generating static pages with dynamic routes
+- Implement proper 404 handling with `404.astro` page
+- Create API routes in `src/pages/api/` for server endpoints
+
+## Data Fetching & Content Management
+
+### Astro Data Handling
+- Use `Astro.props` for passing data to components
+- Implement `getStaticPaths()` for build-time data fetching
+- Use `Astro.glob()` for working with local files efficiently
+- Leverage Markdown (.md) or MDX (.mdx) files for content-heavy pages
+- Implement content collections for organized content management
+
+### Svelte Component Data
+- Receive data via props from parent Astro components
+- Use Svelte stores for component-level state management
+- Implement reactive declarations for derived state
+- Use context API for sharing data between nested Svelte components
+
+## State Management
+
+### Astro-Level State
+- Minimal server-side data passing via props
+- Use frontmatter for page-level data processing
+- Leverage content collections for structured data
+
+### Svelte Component State
+- Use Svelte stores for complex component state
+- Implement reactive declarations ($:) for derived values
+- Use context API (`setContext`/`getContext`) for component trees
+- Keep state minimal and focused on interactivity needs
+
+## Performance Optimization
+
+### Universal Performance Principles
+- Minimize client-side JavaScript usage
+- Implement proper lazy loading for images and assets
+- Use code splitting and dynamic imports strategically
+- Prioritize Core Web Vitals (LCP, FID, CLS)
+- Implement performance budgets and monitoring
+
+### Astro Performance
+- Leverage static generation by default
+- Use client:* directives judiciously for Svelte components
+- Utilize built-in asset optimization features
+- Implement proper image optimization with `@astrojs/image`
+
+### Svelte Performance
+- Use Svelte's compile-time optimizations
+- Implement proper component lifecycle management
+- Use transitions and animations efficiently
+- Minimize reactive declarations and store subscriptions
+
+## Styling Implementation
+
+### Tailwind CSS Integration
+- Use `@astrojs/tailwind` integration
+- Configure in `astro.config.mjs`:
+```javascript
+import tailwind from '@astrojs/tailwind';
+
+export default defineConfig({
+  integrations: [svelte(), tailwind()]
+});
+```
+
+### Tailwind Best Practices
+- Use utility classes extensively in both Astro and Svelte components
+- Leverage responsive design utilities (`sm:`, `md:`, `lg:`, etc.)
+- Utilize Tailwind's color palette and spacing scale for consistency
+- Implement custom theme extensions in `tailwind.config.cjs` when necessary
+- **Never use the `@apply` directive** - prefer direct utility classes
+
+### Framework-Specific Styling
+**Astro Components:**
+- Use scoped styling with `<style>` tags in `.astro` files
+- Leverage global styles in layouts
+- Support CSS preprocessing (Sass, Less)
+
+**Svelte Components:**
+- Use scoped styling with `<style>` tags in `.svelte` files
+- Implement CSS custom properties for theming
+- Use Svelte's class: directive for conditional styling
+
+## SEO and Meta Management
+
+### SEO Best Practices
+- Use Astro's `<head>` tag for meta information in layouts
+- Implement canonical URLs for proper SEO
+- Create reusable SEO components for consistent meta tag management
+- Use structured data (JSON-LD) for rich snippets
+- Implement proper Open Graph and Twitter Card meta tags
+
+### Content Optimization
+- Use semantic HTML structure in both Astro and Svelte components
+- Implement proper heading hierarchy (h1-h6)
+- Optimize images with proper alt tags and lazy loading
+- Use content collections for SEO-friendly content management
+
+## Forms and Interactivity
+
+### Form Handling
+- Use Svelte components for interactive forms
+- Implement client-side validation with Svelte reactivity
+- Use Astro API routes for form submission handling
+- Implement progressive enhancement principles
+
+### Interactive Elements
+- Use Svelte for modals, dropdowns, and dynamic content
+- Implement proper focus management and keyboard navigation
+- Use Svelte transitions for smooth user interactions
+- Keep interactivity scoped to necessary components
+
+## API and Server-Side Features
+
+### Astro API Routes
+- Create API endpoints in `src/pages/api/` directory
+- Handle form submissions and data processing
+- Implement proper request/response handling
+- Use for serverless functions and data fetching
+
+### Integration with External APIs
+- Fetch data at build time using `getStaticPaths()` and frontmatter
+- Use Astro API routes as proxy for external APIs
+- Implement proper error handling for API calls
+
+## Testing Strategy
+
+### Testing Approach
+- Use Vitest for unit testing utility functions
+- Test Svelte components in isolation using `@testing-library/svelte`
+- Implement end-to-end testing with Playwright for full page interactions
+- Use Astro's testing utilities for content and routing tests
+
+### Component Testing
+- Test Svelte component logic and reactivity
+- Mock external dependencies and API calls
+- Test accessibility and keyboard interactions
+- Implement visual regression testing for critical components
+
+## Build and Deployment
+
+### Build Optimization
+- Use Astro's build command for optimized static output
+- Implement proper environment variable handling
+- Configure build settings for target deployment platform
+- Use SSR adapters when server-side rendering is needed
+
+### Deployment Platforms
+- Deploy to static hosting (Netlify, Vercel, GitHub Pages)
+- Use CDN for optimal global performance
+- Implement proper CI/CD pipelines
+- Configure environment-specific settings
+
+## Accessibility Standards
+
+### Universal Accessibility
+- Ensure proper semantic HTML structure in both Astro and Svelte components
+- Implement ARIA attributes where necessary
+- Ensure keyboard navigation support for all interactive elements
+- Test with screen readers and accessibility audit tools
+
+### Framework-Specific Accessibility
+**Astro:** Focus on semantic HTML and proper document structure
+**Svelte:** Implement proper focus management with `bind:this` and accessibility actions
+
+## Content Management
+
+### Markdown and MDX
+- Use Markdown files for blog posts and documentation
+- Leverage MDX for interactive content with Svelte components
+- Implement proper frontmatter structure
+- Use content collections for organized content management
+
+### Content Collections
+- Define content schemas for type safety
+- Implement proper content validation
+- Use for blogs, documentation, and structured content
+- Enable content-based routing and pagination
+
+## Key Conventions
+
+1. Follow Astro's official documentation and best practices
+2. Use TypeScript for enhanced type safety and developer experience
+3. Implement proper error handling and logging
+4. Leverage Astro's static generation capabilities
+5. Use Svelte components only where interactivity is needed
+6. Implement proper asset optimization and lazy loading
+7. Use content collections for structured content management
+8. Prioritize accessibility in all components
+
+## Integration and Ecosystem
+
+### Astro Integrations
+- Use official integrations when available (@astrojs/*)
+- Configure integrations properly in astro.config.mjs
+- Leverage community integrations for extended functionality
+
+### Svelte Ecosystem
+- Use Svelte stores for state management
+- Leverage Svelte actions for DOM manipulation
+- Implement Svelte transitions and animations
+- Use Svelte context for component communication
+
+## Performance Metrics and Monitoring
+
+- Prioritize Core Web Vitals in development
+- Use Lighthouse for performance auditing
+- Implement performance budgets and monitoring
+- Regular performance testing with realistic content loads
+- Monitor bundle sizes and optimize accordingly
+
+Refer to official Astro and Svelte documentation for detailed framework-specific information and best practices. 

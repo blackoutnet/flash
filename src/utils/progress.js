@@ -5,26 +5,26 @@
  * @param {progressCallback} onProgress
  * @returns {(progressCallback)[]}
  */
-export function createSteps(steps, onProgress) {
-  const stepWeights = typeof steps === 'number' ? Array(steps).fill(1) : steps
+export const createSteps = (steps, onProgress) => {
+  const stepWeights = typeof steps === "number" ? Array(steps).fill(1) : steps;
 
-  const progressParts = Array(stepWeights.length).fill(0)
-  const totalSize = stepWeights.reduce((total, weight) => total + weight, 0)
+  const progressParts = Array(stepWeights.length).fill(0);
+  const totalSize = stepWeights.reduce((total, weight) => total + weight, 0);
 
-  function updateProgress() {
+  const updateProgress = () => {
     const weightedAverage = stepWeights.reduce((acc, weight, idx) => {
-      return acc + progressParts[idx] * weight
-    }, 0)
-    onProgress(weightedAverage / totalSize)
-  }
+      return acc + progressParts[idx] * weight;
+    }, 0);
+    onProgress(weightedAverage / totalSize);
+  };
 
   return stepWeights.map((weight, idx) => (progress) => {
     if (progressParts[idx] !== progress) {
-      progressParts[idx] = progress
-      updateProgress()
+      progressParts[idx] = progress;
+      updateProgress();
     }
-  })
-}
+  });
+};
 
 /**
  * Step weight callback
@@ -43,10 +43,18 @@ export function createSteps(steps, onProgress) {
  * @param {weightCallback} [getStepWeight]
  * @returns {([T, progressCallback])[]}
  */
-export function withProgress(steps, onProgress, getStepWeight) {
+export const withProgress = (steps, onProgress, getStepWeight) => {
   const callbacks = createSteps(
-    steps.map(getStepWeight || (step => typeof step === 'number' ? step : (typeof step !== 'string' ? step.size || step.length || 1 : 1))),
-    onProgress,
-  )
-  return steps.map((step, idx) => [step, callbacks[idx]])
-}
+    steps.map(
+      getStepWeight ||
+        ((step) =>
+          typeof step === "number"
+            ? step
+            : typeof step !== "string"
+            ? step.size || step.length || 1
+            : 1)
+    ),
+    onProgress
+  );
+  return steps.map((step, idx) => [step, callbacks[idx]]);
+};
